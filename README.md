@@ -3,7 +3,7 @@ From ogg/theora to OpenGL texture, with ARM speedup.
 
 ## Intro ##
  [Theora](http://www.theora.org/) video encoding has a reputation of being unfriendly to [ARM](https://en.wikipedia.org/wiki/ARM_architecture) architectures, used in all major mobile platforms. Several years ago Robin Watts provided a well needed speedup using pieces of native assembly code
- ([Theorarm](http://wss.co.uk/pinknoise/theorarm/)). Oggeyman takes that implmentation and and ties it together with mapping onto [OpenGL](https://en.wikipedia.org/wiki/OpenGL) [Texture](https://www.opengl.org/wiki/Texture), in a piece of C++ code.
+ ([Theorarm](http://wss.co.uk/pinknoise/theorarm/)). Oggeyman takes that implementation and ties it together with mapping onto [OpenGL](https://en.wikipedia.org/wiki/OpenGL) [Texture](https://www.opengl.org/wiki/Texture), in a piece of C++ code.
  
 ## Prerequisites ##
 [GNU toolchain](https://en.wikipedia.org/wiki/GNU_toolchain) (gcc, g++, and make in particular; though I suspect it should not be too hard to move to other toolchains) for compilation of a generic executable. 
