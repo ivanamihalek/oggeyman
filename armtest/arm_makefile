@@ -10,7 +10,7 @@ CFLAGS += -I../include/theorarm/yuv2rgb -I../include/oggeyman
 CFLAGS += -O
 
 OBJDIR = build
-NAME   = wattsARM
+NAME   = oggeyARM
 # define .PHONY targets, e.g. these will be made even if directories or files with the same name exist
 .PHONY: all clean
 

@@ -3,7 +3,7 @@ CCOMPL  =  gcc
 CFLAGS  =  -Wall  -O
 DEFINES = # -DOSX
 
-NAME = watts
+NAME = oggey
 
 
 VPATH =  ../ogg:../oggeyman:../theora:../theorarm:../theorarm/yuv2rgb
