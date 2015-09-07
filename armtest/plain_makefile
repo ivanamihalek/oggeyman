@@ -1,0 +1,51 @@
+CPPCMPL =  g++ -fpermissive
+CCOMPL  =  gcc
+CFLAGS  =  -Wall  -O
+DEFINES = # -DOSX
+
+NAME = watts
+
+
+VPATH =  ../ogg:../oggeyman:../theora:../theorarm:../theorarm/yuv2rgb
+LIBS    =  -lm -lc  -L/usr/lib 
+INCLUDE =  -I../include  -I../include/theorarm -I../include/theorarm/yuv2rgb -I../include/oggeyman
+
+
+SOURCES.cpp =  armtest.cpp  oggeyman.cpp
+SOURCES.c =   watts.c yuv2rgb16tab.c bitwise.c framing.c\
+	apiwrapper.c decapiwrapper.c	decode.c fragment.c idct.c internal.c state.c \
+	bitpack.c decinfo.c dequant.c huffdec.c	info.c	quant.c  yuv420_2_rgb8888.c
+
+AUX =  makefile  yuv2rgb.h
+# specify the directory where you want the object files to go
+OBJDIR   = build
+# create a list of object files that need to be compiled
+OBJECTS  = $(addprefix $(OBJDIR)/, $(patsubst %.cpp, %.o, $(SOURCES.cpp)))
+OBJECTS += $(addprefix $(OBJDIR)/, $(patsubst %.c, %.o, $(SOURCES.c)))
+
+# define .PHONY targets, e.g. these will be made even if directories or files with the same name exist
+.PHONY: all clean
+
+# make the directory target before you make your main target:
+all: $(OBJDIR) $(NAME)
+
+# add a target to create the directory if it does not exist
+$(OBJDIR):
+	mkdir $(OBJDIR)
+
+# rule to compile all the .o object files in $(OBJDIR) from .cpp files in the current directory
+$(OBJDIR)/%.o: %.cpp
+	$(CPPCMPL) $(CFLAGS) $(DEFINES) $(INCLUDE)  -c $< -o $@
+$(OBJDIR)/%.o: %.c
+	$(CCOMPL) $(CFLAGS) $(DEFINES)  $(INCLUDE)  -c $< -o $@
+
+
+$(NAME): $(OBJECTS) 
+	$(CPPCMPL) -o $@  $(OBJECTS)  $(LIBS)
+
+
+clean:
+	rm  -rf build
+
+
+

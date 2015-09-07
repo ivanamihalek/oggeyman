@@ -1,0 +1,60 @@
+VPATH = ../oggeyman:../theorarm:../theorarm/dec:../theorarm/tremolo:../theorarm/yuv2rgb
+
+CPP   = arm-linux-gnueabi-g++ -fpermissive
+CC    = arm-linux-gnueabi-gcc
+STRIP = arm-linux-gnueabi-strip
+
+CFLAGS  = -I../include/theorarm -I../include/theorarm/ogg
+CFLAGS += -I../include/theorarm/dec -I../include/theorarm/tremolo
+CFLAGS += -I../include/theorarm/yuv2rgb -I../include/oggeyman
+CFLAGS += -O
+
+OBJDIR = build
+NAME   = wattsARM
+# define .PHONY targets, e.g. these will be made even if directories or files with the same name exist
+.PHONY: all clean
+
+# make the directory target before you make your main target:
+all: $(OBJDIR) $(NAME)
+
+# add a target to create the directory if it does not exist
+$(OBJDIR):
+	mkdir $(OBJDIR)
+
+# Compilation rule
+$(OBJDIR)/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR)/%.o: %.cpp
+	$(CPP) $(CFLAGS) -c $< -o $@
+
+
+#../theorarm/dec should contain common.s offsetsARM.s
+check_hdrs:
+	 test -s ../theorarm/dec/common.s || { echo "theorarm/dec/common.s not found"; exit 1; }
+	 test -s ../theorarm/dec/offsetsARM.s || { echo "theorarm/dec/ffsetsARM.s not found"; exit 1; }
+
+# Assembly rule
+$(OBJDIR)/%.o: %.s check_hdrs
+	$(CC) -I../theorarm/dec $(CFLAGS) -c $< -o $@
+	$(STRIP) -x $@
+
+SOURCES.cpp =  armtest.cpp  oggeyman.cpp
+
+SOURCES.c =  apiwrapper.c decapiwrapper.c decinfo.c decode.c dequant.c fragment.c \
+	huffdec.c idct.c info.c internal.c quant.c state.c bitwise.c codebook.c \
+	dpen.c dsp.c floor0.c floor1.c floor_lookup.c framing.c treminfo.c mapping0.c \
+	mdct.c misc.c res012.c yuv2rgb16tab.c  watts.c
+
+SOURCES.s = bitwise2ARM.s decodeARM.s fragARM.s idctARM.s ppARM.s stateARM.s \
+	bitwiseARM.s floor1LARM.s mdctLARM.s yuv420_2_rgb8888.s
+
+OBJECTS  = $(addprefix $(OBJDIR)/, $(patsubst %.cpp, %.o, $(SOURCES.cpp)))
+OBJECTS += $(addprefix $(OBJDIR)/, $(patsubst %.c, %.o, $(SOURCES.c)))
+OBJECTS += $(addprefix $(OBJDIR)/, $(patsubst %.s, %.o, $(SOURCES.s)))
+
+$(NAME): $(OBJECTS)
+	$(CPP) $^ -o $@ 
+
+clean:
+	rm  -rf build
