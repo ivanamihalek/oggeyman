@@ -2,8 +2,8 @@
  *                                                                  *
  * THIS FILE IS PART OF THE Oggeyman  DECODER SOURCE CODE.          *
  * USE, DISTRIBUTION AND REPRODUCTION OF THIS LIBRARY SOURCE IS     *
- * GOVERNED BY A SOURCE LICENSE INCLUDED WITH THIS SOURCE           *
- * IN 'COPYING'. PLEASE READ THESE TERMS BEFORE DISTRIBUTING.       *
+ * GOVERNED BY A SOURCE LICENSE INCLUDED WITH THIS SOURCE.          *
+ * PLEASE READ THESE TERMS BEFORE DISTRIBUTING.                     *
  * (C) 2015 Ivana Mihalek                                           *
  *                                                                  *
  * THE Theora SOURCE CODE IS COPYRIGHT (C) 2002-2009                *

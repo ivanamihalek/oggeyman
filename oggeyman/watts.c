@@ -1,11 +1,17 @@
-/* YUV-> RGB conversion code.
- *
- * Copyright (C) 2011 Robin Watts (robin@wss.co.uk) for Pinknoise
- * Productions Ltd.
- *
- * Licensed under the BSD license. See 'COPYING' for details of
- * (non-)warranty.
- */
+/********************************************************************
+ *                                                                  *
+ * THIS FILE IS PART OF THE Oggeyman  DECODER SOURCE CODE.          *
+ * USE, DISTRIBUTION AND REPRODUCTION OF THIS LIBRARY SOURCE IS     *
+ * GOVERNED BY A SOURCE LICENSE INCLUDED WITH THIS SOURCE.          *
+ * PLEASE READ THESE TERMS BEFORE DISTRIBUTING.                     *
+ * (C) 2015 Ivana Mihalek                                           *
+ *                                                                  *
+ * THE Theora SOURCE CODE IS COPYRIGHT (C) 2002-2009                *
+ * by the Xiph.Org Foundation and contributors http://www.xiph.org/ *
+ * THE Theorarm Copyright (C) 2009 Robin Watts for                  *
+ * Pinknoise Productions Ltd.                                       *
+ *                                                                  *
+ ********************************************************************/
 
 #include "yuv2rgb/yuv2rgb.h"
 
