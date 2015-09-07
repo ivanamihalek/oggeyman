@@ -5,7 +5,7 @@ From ogg/theora to OpenGL texture, with ARM speedup.
  [Theora](http://www.theora.org/) video encoding has a reputation of being unfriendly to [ARM](https://en.wikipedia.org/wiki/ARM_architecture) architectures, used in all major mobile platforms. Several years ago Robin Watts provided a well needed speedup using pieces of native assembly code
  ([Theorarm](http://wss.co.uk/pinknoise/theorarm/)). Oggeyman takes that implementation and ties it together with mapping onto [OpenGL](https://en.wikipedia.org/wiki/OpenGL) [Texture](https://www.opengl.org/wiki/Texture), in a piece of C++ code.
  
-Test file credit: Cirillo, M via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A-new-surgical-ventricular-restoration-technique-to-reset-residual-myocardiums-fiber-orientation-1750-1164-3-6-S1.ogv).
+Test file credit: Polar_orbit.ogg from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Polar_orbit.ogg).
  
 ## Prerequisites ##
 [GNU toolchain](https://en.wikipedia.org/wiki/GNU_toolchain) (gcc, g++, and make in particular; though I suspect it should not be too hard to move to other toolchains) for compilation of a generic executable. 
@@ -40,6 +40,13 @@ qemu-arm -L /usr/arm-linux-gnueabi oggeyARM
 ```
 Make sure that the link path corresponds to the one where arm-linux-gnueabi resides in your setup. (Failing to do so results in `/lib/ld-linux.so.3: No such file or directory` error.)
 
+In both cases, the output should be the time of each frame, printed on stdout, in the proper time sequence.
+
+Note that Oggeyman.cpp can be used for threeway comparison/timing of the straightforward yuv2rgb implementation, the implementation using table lookup, and the ARM optimized implementation. See Oggeyman::yuv2bgra() in [Oggeyman.cpp](https://github.com/ivanamihalek/oggeyman/blob/master/oggeyman/oggeyman.cpp).
+
+
 ## What Oggeyman is not ###
 
 Oggeyman is not a full decoder - in particular it pulls out Theora (video) stream from the provided [ogg](https://en.wikipedia.org/wiki/Ogg) file, and ignores the [Vorbis](https://en.wikipedia.org/wiki/Vorbis) (audio) or any other stream that might be present.
+
+Oggeyman is not a player, either.  It  takes ogg file as an iput an returns Textures. The rest of the implementation is up to user. 
