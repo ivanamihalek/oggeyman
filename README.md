@@ -40,4 +40,4 @@ Make sure that the link path corresponds to the one where arm-linux-gnueabi resi
 
 ## What Oggeyman is not ###
 
-Oggeyman is not a full decoder - in particular it pulls out Theora (video) stream from the provided ogg(https://en.wikipedia.org/wiki/Ogg) file, and ignores the [Vorbis](https://en.wikipedia.org/wiki/Vorbis) (audio) or any other stream that might be present.
+Oggeyman is not a full decoder - in particular it pulls out Theora (video) stream from the provided [ogg](https://en.wikipedia.org/wiki/Ogg) file, and ignores the [Vorbis](https://en.wikipedia.org/wiki/Vorbis) (audio) or any other stream that might be present.
