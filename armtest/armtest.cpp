@@ -8,7 +8,8 @@ int main ( int argc, char * argv[]) {
 
     Oggeyman oggey;
     
-    oggey.init(VF_BGRA, "../../../../android/assets/video/splash_screen_new.ogv");
+    if (!oggey.init(VF_BGRA, "test.ogv")) return 1;
+	
     int num_bytes = oggey.width() * oggey.height() * 4;
     unsigned char *BGRAbuffer = NULL;
     BGRAbuffer = calloc(num_bytes,sizeof(unsigned char));
